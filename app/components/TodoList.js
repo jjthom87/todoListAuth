@@ -49,7 +49,7 @@ var TodoItem = connect()(React.createClass({
 var TodoList = React.createClass({
   getInitialState: function(){
   	return {
-  		refresh: false
+  		refreshing: false
   	}
   },
   onLogout: function(){
@@ -67,6 +67,9 @@ var TodoList = React.createClass({
     this.props.dispatch(getTodos).then(() => {
       this.setState({refreshing: false});
     })
+  },
+  componentWillMount: function(){
+    this.props.dispatch(getTodos).then(() => {})
   },
   render: function() {
   	var renderTodos = () => {

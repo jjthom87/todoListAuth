@@ -22,9 +22,12 @@ exports.createTodo = (text) => {
 exports.getTodos = function(dispatch) {
 	return Keychain.getGenericPassword().then((credentials) => {
 		var {username, password} = credentials;
+		console.log(credentials)
+		console.log(username)
 		return axios.get(TODOS_URL(username), {
 			headers: {authorization: password}
 		}).then((response) => {
+			console.log(response.data)
 			dispatch(setTodos(response.data.todos));
 		}).catch((err) => {
 			dispatch(addAlert("Couldn't get todos"));
