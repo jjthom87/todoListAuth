@@ -19,7 +19,6 @@ var App = React.createClass({
     return {}
   },
   render: function() {
-    console.log(this.props)
     var renderMainView = () => {
       if(this.props.user_id){
         return (
@@ -33,6 +32,7 @@ var App = React.createClass({
     }
     return (
       <View style={{flex: 1}}>
+        <StatusBar barStyle="light-content"/>
         {renderMainView()}
         <AlertContainer/>
       </View>

@@ -5,37 +5,25 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  NavigatorIOS
 } from 'react-native';
 
-import {unauthUser} from '../actions';
+import TodoList from './TodoList';
 
 var Main = React.createClass({
-  onLogout: function(){
-  	this.props.dispatch(unauthUser);
-  },
   render: function() {
     return (
-      <View style={styles.container}>
-        <Text>
-          Welcome to Main Native!
-        </Text>
-        <TouchableOpacity onPress={this.onLogout}>
-        	<Text>
-        		Logout
-        	</Text>
-       	</TouchableOpacity>
-      </View>
+      <NavigatorIOS
+        initialRoute={{
+          component: TodoList,
+          title: 'Todo List',
+          navigationBarHidden: true
+        }}
+        style={{flex: 1}}
+      />
     );
   }
 })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-});
-
-module.exports = connect()(Main);
+module.exports = Main;
